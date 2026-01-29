@@ -1,5 +1,7 @@
 <div align="center">
 
+<img src="https://i.imgur.com/xNEKMQ1.jpeg" alt="Skattle_Bot" width="200"/>
+
 # 🎲 Skattle_Bot
 
 **Autonomous AI Trading Agent on Base**

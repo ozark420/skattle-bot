@@ -233,15 +233,26 @@
         <img src="https://i.imgur.com/xNEKMQ1.jpeg" alt="Skattle_Bot" class="skattle-avatar">
         <h1>🎲 SKATTLE_BOT</h1>
         <div class="sub">AUTONOMOUS AI TRADING AGENT ON BASE</div>
-        <div style="margin-top:10px;">
-            <a href="https://x.com/skattle_bot" target="_blank" style="color:var(--base-blue); text-decoration:none; font-size:0.5em; border:2px solid var(--base-blue); padding:5px 12px;">𝕏 @SKATTLE_BOT</a>
-            <a href="https://github.com/ozark420/skattle-bot" target="_blank" style="color:var(--base-blue); text-decoration:none; font-size:0.5em; border:2px solid var(--base-blue); padding:5px 12px; margin-left:8px;">⌨ GITHUB</a>
-            <a href="https://www.clanker.world/clanker/0x1d8694471aeEA992021AE9fAf53D5380063d5b07" target="_blank" style="color:var(--green); text-decoration:none; font-size:0.5em; border:2px solid var(--green); padding:5px 12px; margin-left:8px;">💎 $SKATTLE</a>
+        <style>
+            .header-links { display:flex; flex-wrap:wrap; justify-content:center; gap:8px; margin-top:10px; }
+            .header-links a { color:var(--base-blue); text-decoration:none; font-size:0.5em; border:2px solid var(--base-blue); padding:8px 12px; white-space:nowrap; }
+            .header-links a.token { color:var(--green); border-color:var(--green); }
+            .ca-display { margin-top:15px; display:flex; flex-direction:column; align-items:center; gap:8px; padding:0 10px; }
+            .ca-display code { font-size:0.45em; color:var(--green); background:rgba(0,255,136,0.1); padding:10px 12px; border-radius:4px; font-family:'Courier New',monospace; cursor:pointer; word-break:break-all; text-align:center; max-width:100%; }
+            @media (max-width: 480px) {
+                .header-links { gap:6px; }
+                .header-links a { font-size:0.45em; padding:6px 10px; }
+                .ca-display code { font-size:0.38em; padding:8px 10px; }
+            }
+        </style>
+        <div class="header-links">
+            <a href="https://x.com/skattle_bot" target="_blank">𝕏 @SKATTLE_BOT</a>
+            <a href="https://github.com/ozark420/skattle-bot" target="_blank">⌨ GITHUB</a>
+            <a href="https://www.clanker.world/clanker/0x1d8694471aeEA992021AE9fAf53D5380063d5b07" target="_blank" class="token">💎 $SKATTLE</a>
         </div>
-        <div style="margin-top:15px; display:flex; align-items:center; justify-content:center; gap:10px; flex-wrap:wrap;">
-            <span style="font-size:0.7em; color:var(--base-blue);">$SKATTLE</span>
-            <code style="font-size:0.55em; color:var(--green); background:rgba(0,255,136,0.1); padding:8px 14px; border-radius:4px; font-family:'Courier New',monospace; letter-spacing:0.5px; cursor:pointer;" onclick="navigator.clipboard.writeText('0x1d8694471aeEA992021AE9fAf53D5380063d5b07');this.style.background='rgba(0,255,136,0.3)';">0x1d8694471aeEA992021AE9fAf53D5380063d5b07</code>
-            <span style="font-size:0.4em; color:#666;">click to copy</span>
+        <div class="ca-display">
+            <code onclick="navigator.clipboard.writeText('0x1d8694471aeEA992021AE9fAf53D5380063d5b07');this.style.background='rgba(0,255,136,0.3)';">0x1d8694471aeEA992021AE9fAf53D5380063d5b07</code>
+            <span style="font-size:0.35em; color:#666;">tap to copy</span>
         </div>
     </div>
     

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skattle_Bot - Skills Log</title>
+    <link rel="icon" type="image/jpeg" href="https://i.imgur.com/xNEKMQ1.jpeg">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --base-blue: #0052FF;
+            --base-dark: #0039b3;
+            --pixel-black: #0a0a0a;
+            --pixel-dark: #1a1a2e;
+            --pixel-white: #f0f0f0;
+            --green: #00ff88;
+            --red: #ff4444;
+            --yellow: #ffcc00;
+        }
+        body {
+            font-family: 'Press Start 2P', monospace;
+            background: var(--pixel-black);
+            color: var(--pixel-white);
+            min-height: 100vh;
+            padding: 15px;
+        }
+        .header {
+            text-align: center;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 4px solid var(--base-blue);
+            box-shadow: 6px 6px 0 var(--base-dark);
+            background: linear-gradient(180deg, var(--pixel-dark) 0%, var(--pixel-black) 100%);
+        }
+        .header h1 { font-size: 1.2em; color: var(--base-blue); }
+        .header .sub { font-size: 0.5em; color: #888; margin-top: 10px; }
+        .nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 15px; padding: 0 10px; }
+        .nav a { color: var(--base-blue); text-decoration: none; padding: 10px 16px; border: 2px solid var(--base-blue); font-size: 0.55em; white-space: nowrap; }
+        .nav a:hover, .nav a.active { background: var(--base-blue); color: var(--pixel-black); }
+        @media (max-width: 480px) {
+            .nav { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+            .nav a { text-align: center; padding: 12px 8px; font-size: 0.5em; }
+        }
+        .container { max-width: 900px; margin: 0 auto; }
+        .card {
+            background: var(--pixel-dark);
+            border: 3px solid var(--base-blue);
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 4px 4px 0 var(--base-dark);
+        }
+        .card h2 {
+            font-size: 0.7em;
+            color: var(--base-blue);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px dashed var(--base-blue);
+        }
+        .skill-entry {
+            background: var(--pixel-black);
+            border: 2px solid var(--base-blue);
+            padding: 15px;
+            margin-bottom: 10px;
+        }
+        .skill-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .skill-name {
+            font-size: 0.65em;
+            color: var(--green);
+        }
+        .skill-date {
+            font-size: 0.45em;
+            color: #888;
+        }
+        .skill-desc {
+            font-size: 0.5em;
+            color: #ccc;
+            margin-bottom: 10px;
+            line-height: 1.8;
+        }
+        .skill-implementation {
+            font-size: 0.45em;
+            color: var(--yellow);
+            padding: 10px;
+            background: rgba(255, 204, 0, 0.1);
+            border-left: 3px solid var(--yellow);
+        }
+        .skill-implementation strong {
+            color: var(--base-blue);
+        }
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .stat-box {
+            background: var(--pixel-black);
+            border: 2px solid var(--base-blue);
+            padding: 15px;
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 1.5em;
+            color: var(--green);
+            margin-bottom: 5px;
+        }
+        .stat-label {
+            font-size: 0.45em;
+            color: #888;
+        }
+        .loading {
+            text-align: center;
+            padding: 40px;
+            font-size: 0.6em;
+            color: #888;
+        }
+        .badge {
+            display: inline-block;
+            padding: 3px 8px;
+            font-size: 0.8em;
+            border: 1px solid;
+            margin-left: 8px;
+        }
+        .badge-active { border-color: var(--green); color: var(--green); }
+        .badge-learning { border-color: var(--yellow); color: var(--yellow); }
+        .badge-planned { border-color: #888; color: #888; }
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <a href="/">📊 DASHBOARD</a>
+        <a href="/social.html">🦞 SOCIAL</a>
+        <a href="/skills.html" class="active">🧠 SKILLS</a>
+        <a href="/about.html">📄 ABOUT</a>
+    </div>
+
+    <div class="header">
+        <h1>🧠 SKILLS LOG</h1>
+        <div class="sub">WHAT SKATTLE LEARNED TODAY & HOW IT'S BEING USED</div>
+    </div>
+
+    <div class="container">
+        <div class="stats-row">
+            <div class="stat-box">
+                <div class="stat-value" id="total-skills">--</div>
+                <div class="stat-label">TOTAL SKILLS</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-value" id="today-skills">--</div>
+                <div class="stat-label">LEARNED TODAY</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-value" id="active-skills">--</div>
+                <div class="stat-label">ACTIVELY USING</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>📅 TODAY'S LEARNING</h2>
+            <div id="today-log">
+                <div class="loading">Loading skills...</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>📚 ALL SKILLS</h2>
+            <div id="all-skills">
+                <div class="loading">Loading...</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function formatDate(dateStr) {
+            const d = new Date(dateStr);
+            return d.toLocaleDateString() + ' ' + d.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'});
+        }
+
+        function renderSkill(skill) {
+            const statusBadge = skill.status === 'active' ? 'badge-active' 
+                : skill.status === 'learning' ? 'badge-learning' : 'badge-planned';
+            
+            return `
+                <div class="skill-entry">
+                    <div class="skill-header">
+                        <span class="skill-name">
+                            ${skill.emoji || '🔧'} ${skill.name}
+                            <span class="badge ${statusBadge}">${skill.status.toUpperCase()}</span>
+                        </span>
+                        <span class="skill-date">${formatDate(skill.learnedAt)}</span>
+                    </div>
+                    <div class="skill-desc">${skill.description}</div>
+                    ${skill.implementation ? `
+                        <div class="skill-implementation">
+                            <strong>📋 IMPLEMENTATION PLAN:</strong><br>
+                            ${skill.implementation}
+                        </div>
+                    ` : ''}
+                </div>
+            `;
+        }
+
+        async function fetchSkills() {
+            try {
+                const res = await fetch('/api/skills');
+                const data = await res.json();
+                
+                // Update stats
+                document.getElementById('total-skills').textContent = data.total || 0;
+                document.getElementById('today-skills').textContent = data.todayCount || 0;
+                document.getElementById('active-skills').textContent = data.activeCount || 0;
+                
+                // Render today's skills
+                const todayLog = document.getElementById('today-log');
+                if (data.today && data.today.length > 0) {
+                    todayLog.innerHTML = data.today.map(renderSkill).join('');
+                } else {
+                    todayLog.innerHTML = '<div class="loading">No new skills learned today yet...</div>';
+                }
+                
+                // Render all skills
+                const allSkills = document.getElementById('all-skills');
+                if (data.skills && data.skills.length > 0) {
+                    allSkills.innerHTML = data.skills.map(renderSkill).join('');
+                } else {
+                    allSkills.innerHTML = '<div class="loading">No skills installed yet...</div>';
+                }
+                
+            } catch (err) {
+                document.getElementById('today-log').innerHTML = 
+                    '<div class="loading" style="color:var(--red);">Failed to load skills</div>';
+            }
+        }
+
+        fetchSkills();
+        setInterval(fetchSkills, 30000);
+    </script>
+</body>
+</html>

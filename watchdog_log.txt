@@ -1,0 +1,16 @@
+2026-01-30 12:22:00,000 - WATCHDOG - INFO - === WATCHDOG RESET ===
+2026-01-30 12:26:56,804 - WATCHDOG - INFO - Watchdog interrupted by user
+2026-01-30 12:43:27,272 - WATCHDOG - INFO - Watchdog starting
+2026-01-30 12:43:27,276 - WATCHDOG - INFO - Starting agent: C:\Users\ozark\clawd-swarm\agent.py
+2026-01-30 13:30:21,343 - WATCHDOG - INFO - Watchdog interrupted by user
+2026-01-30 13:57:41,382 - WATCHDOG - INFO - Watchdog starting
+2026-01-30 13:57:41,388 - WATCHDOG - INFO - Starting agent: C:\Users\ozark\clawd-swarm\agent.py
+2026-01-30 14:02:21,016 - WATCHDOG - INFO - Watchdog interrupted by user
+2026-01-30 14:02:21,208 - WATCHDOG - INFO - Watchdog starting
+2026-01-30 14:02:21,217 - WATCHDOG - INFO - Starting agent: C:\Users\ozark\clawd-swarm\agent.py
+2026-01-30 14:07:56,309 - WATCHDOG - INFO - Watchdog interrupted by user
+2026-01-30 14:13:48,559 - WATCHDOG - INFO - Watchdog starting
+2026-01-30 14:13:48,562 - WATCHDOG - INFO - Starting agent: C:\Users\ozark\clawd-swarm\agent.py
+2026-01-30 14:53:33,271 - WATCHDOG - INFO - Watchdog interrupted by user
+2026-01-30 14:56:16,297 - WATCHDOG - INFO - Watchdog starting
+2026-01-30 14:56:16,300 - WATCHDOG - INFO - Starting agent: C:\Users\ozark\clawd-swarm\agent.py

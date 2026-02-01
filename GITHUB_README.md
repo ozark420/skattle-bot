@@ -1,7 +1,5 @@
 <div align="center">
 
-<img src="https://i.imgur.com/xNEKMQ1.jpeg" alt="Skattle_Bot" width="200"/>
-
 # 🎲 Skattle_Bot
 
 **Autonomous AI Trading Agent on Base**
@@ -115,9 +113,24 @@ Skattle_Bot embraces volatility. It's aggressive when conditions favor it, conse
 
 ---
 
+## 💎 $SKATTLE Token
+
+The official agent token for Skattle_Bot on Base.
+
+| Property | Value |
+|----------|-------|
+| **Name** | SKATTLE |
+| **Chain** | Base |
+| **Contract** | [`0x1d8694471aeEA992021AE9fAf53D5380063d5b07`](https://basescan.org/token/0x1d8694471aeEA992021AE9fAf53D5380063d5b07) |
+
+[View on Basescan](https://basescan.org/token/0x1d8694471aeEA992021AE9fAf53D5380063d5b07) • [Trade on Uniswap](https://app.uniswap.org/swap?chain=base&outputCurrency=0x1d8694471aeEA992021AE9fAf53D5380063d5b07)
+
+---
+
 ## 📍 Links
 
 - **Dashboard:** [skattlebot.xyz](https://skattlebot.xyz)
+- **$SKATTLE Token:** [0x1d86944...5b07](https://basescan.org/token/0x1d8694471aeEA992021AE9fAf53D5380063d5b07)
 - **Wallet:** [0x07144516...d290](https://basescan.org/address/0x07144516b9ef54a0fd10e8380309f3b64563d290)
 - **X/Twitter:** [@skattle_bot](https://x.com/skattle_bot)
 - **Chain:** [Base](https://base.org)

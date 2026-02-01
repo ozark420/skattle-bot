@@ -1,0 +1,73 @@
+{
+  "updated_at": "2026-01-31T22:13:23.020472",
+  "signals": {
+    "BTC": {
+      "coin": "BTC",
+      "timestamp": "2026-01-31T22:13:18.693428",
+      "composite_score": 55.0,
+      "direction": "neutral",
+      "strength": 0.1,
+      "components": {
+        "coingecko": {
+          "sentiment_up": 50,
+          "sentiment_down": 50,
+          "community_score": 0,
+          "developer_score": 0,
+          "price_change_24h": 0
+        },
+        "fear_greed": {
+          "value": 14,
+          "classification": "Extreme Fear"
+        },
+        "coinglass": {}
+      }
+    },
+    "ETH": {
+      "coin": "ETH",
+      "timestamp": "2026-01-31T22:13:20.399908",
+      "composite_score": 55.0,
+      "direction": "neutral",
+      "strength": 0.1,
+      "components": {
+        "coingecko": {
+          "sentiment_up": 50,
+          "sentiment_down": 50,
+          "community_score": 0,
+          "developer_score": 0,
+          "price_change_24h": 0
+        },
+        "fear_greed": {
+          "value": 14,
+          "classification": "Extreme Fear"
+        },
+        "coinglass": {}
+      }
+    },
+    "SOL": {
+      "coin": "SOL",
+      "timestamp": "2026-01-31T22:13:22.019842",
+      "composite_score": 55.0,
+      "direction": "neutral",
+      "strength": 0.1,
+      "components": {
+        "coingecko": {
+          "sentiment_up": 50,
+          "sentiment_down": 50,
+          "community_score": 0,
+          "developer_score": 0,
+          "price_change_24h": 0
+        },
+        "fear_greed": {
+          "value": 14,
+          "classification": "Extreme Fear"
+        },
+        "coinglass": {}
+      }
+    },
+    "MARKET": {
+      "composite_score": 55.0,
+      "direction": "neutral",
+      "strength": 0.1
+    }
+  }
+}

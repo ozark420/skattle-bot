@@ -1,0 +1,11 @@
+2026-01-31 17:33:31,228 - COORDINATOR - INFO - ============================================================
+2026-01-31 17:33:31,271 - COORDINATOR - INFO - ============================================================
+2026-01-31 17:33:31,272 - COORDINATOR - INFO - Starting agent: sentiment
+2026-01-31 17:33:31,279 - COORDINATOR - INFO - Starting risk in 5s...
+2026-01-31 17:33:36,280 - COORDINATOR - INFO - Starting agent: risk
+2026-01-31 17:33:36,286 - COORDINATOR - INFO - Starting trader in 30s...
+2026-01-31 17:34:06,287 - COORDINATOR - INFO - Starting agent: trader
+2026-01-31 17:34:06,294 - COORDINATOR - INFO - 
+2026-01-31 17:34:06,294 - COORDINATOR - INFO - All agents started. Swarm is running.
+2026-01-31 17:34:06,294 - COORDINATOR - INFO - Dashboard: http://localhost:8420
+2026-01-31 17:34:06,294 - COORDINATOR - INFO - 

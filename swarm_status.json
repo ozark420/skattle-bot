@@ -1,0 +1,19 @@
+{
+  "status": "running",
+  "updated_at": "2026-01-31T22:16:03.471585",
+  "uptime_seconds": 16952.24285,
+  "agents": {
+    "sentiment": {
+      "running": true,
+      "pid": 44172
+    },
+    "risk": {
+      "running": true,
+      "pid": 18888
+    },
+    "trader": {
+      "running": true,
+      "pid": 39472
+    }
+  }
+}

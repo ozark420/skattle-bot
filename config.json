@@ -1,0 +1,51 @@
+{
+  "wallet": {
+    "address": "0x07144516b9ef54a0fd10e8380309f3b64563d290",
+    "chain": "base",
+    "starting_balance_usd": 30.0,
+    "starting_asset": "USDC"
+  },
+  "risk": {
+    "max_position_pct": 0.25,
+    "max_daily_drawdown_pct": 0.15,
+    "max_consecutive_losses": 4,
+    "kelly_fraction": 0.4,
+    "reserve_pct": 0.15
+  },
+  "allocation": {
+    "avantis_pct": 0.55,
+    "polymarket_pct": 0.30,
+    "reserve_pct": 0.15
+  },
+  "pairs": {
+    "BTC": {"enabled": true, "leverage": 50, "vol_threshold": 0.025},
+    "ETH": {"enabled": true, "leverage": 50, "vol_threshold": 0.035},
+    "SOL": {"enabled": true, "leverage": 100, "vol_threshold": 0.06},
+    "ARB": {"enabled": true, "leverage": 25, "vol_threshold": 0.05},
+    "AVAX": {"enabled": true, "leverage": 25, "vol_threshold": 0.05},
+    "BNB": {"enabled": true, "leverage": 25, "vol_threshold": 0.04},
+    "DOGE": {"enabled": true, "leverage": 25, "vol_threshold": 0.08},
+    "LINK": {"enabled": true, "leverage": 25, "vol_threshold": 0.05},
+    "OP": {"enabled": true, "leverage": 25, "vol_threshold": 0.06},
+    "MATIC": {"enabled": true, "leverage": 25, "vol_threshold": 0.05}
+  },
+  "disabled_pairs_note": "GOLD, SILVER, WTI, NATGAS, EURUSD, GBPUSD, USDJPY disabled - Bankr data unavailable",
+  "strategy": {
+    "mode": "aggressive",
+    "compound_profits": true,
+    "scale_with_wins": true,
+    "win_streak_multiplier": 1.15,
+    "loss_streak_reducer": 0.7
+  },
+  "learning": {
+    "rl_enabled": true,
+    "retrain_every_hours": 4,
+    "save_models": true,
+    "exploration_decay": 0.99
+  },
+  "goals": {
+    "target_balance": 100000,
+    "target_date": "2026-02-10",
+    "checkpoints": [50, 100, 250, 500, 1000, 5000, 10000, 50000, 100000]
+  }
+}

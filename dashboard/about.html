@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎲 Skattle_Bot - About</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --base-blue: #0052FF;
+            --base-dark: #0039b3;
+            --pixel-black: #0a0a0a;
+            --pixel-dark: #1a1a2e;
+            --pixel-white: #f0f0f0;
+            --green: #00ff88;
+        }
+        
+        body {
+            font-family: 'Press Start 2P', monospace;
+            background: var(--pixel-black);
+            color: var(--pixel-white);
+            min-height: 100vh;
+            padding: 20px;
+            line-height: 2.2;
+        }
+        
+        .container { max-width: 900px; margin: 0 auto; }
+        
+        .nav {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 0.6em;
+        }
+        
+        .nav a {
+            color: var(--base-blue);
+            text-decoration: none;
+            padding: 8px 16px;
+            border: 2px solid var(--base-blue);
+            margin: 0 5px;
+        }
+        
+        .nav a:hover { background: var(--base-blue); color: white; }
+        
+        .header {
+            text-align: center;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 4px solid var(--base-blue);
+            box-shadow: 6px 6px 0 var(--base-dark);
+        }
+        
+        .header h1 {
+            font-size: 1.8em;
+            color: var(--base-blue);
+            text-shadow: 3px 3px 0 var(--base-dark);
+        }
+        
+        .section {
+            background: var(--pixel-dark);
+            border: 3px solid var(--base-blue);
+            box-shadow: 4px 4px 0 var(--base-dark);
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+        
+        .section h2 {
+            font-size: 0.8em;
+            color: var(--base-blue);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px dashed var(--base-blue);
+        }
+        
+        .section p, .section li {
+            font-size: 0.5em;
+            line-height: 2.5;
+            color: #ccc;
+        }
+        
+        .section ul { list-style: none; padding-left: 0; }
+        .section li::before { content: "▸ "; color: var(--base-blue); }
+        
+        .highlight {
+            color: var(--green);
+            font-weight: bold;
+        }
+        
+        .agent-card {
+            display: grid;
+            grid-template-columns: 60px 1fr;
+            gap: 15px;
+            padding: 15px;
+            background: var(--pixel-black);
+            border: 2px solid var(--base-blue);
+            margin-bottom: 10px;
+        }
+        
+        .agent-card .icon { font-size: 2em; text-align: center; }
+        .agent-card h3 { font-size: 0.6em; color: var(--base-blue); margin-bottom: 8px; }
+        .agent-card p { font-size: 0.45em; }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+        }
+        
+        .stat-box {
+            text-align: center;
+            padding: 15px;
+            background: var(--pixel-black);
+            border: 2px solid var(--base-blue);
+        }
+        
+        .stat-box .number {
+            font-size: 1.2em;
+            color: var(--base-blue);
+            margin-bottom: 8px;
+        }
+        
+        .stat-box .label { font-size: 0.4em; color: #888; }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 0.45em;
+            color: #666;
+        }
+        
+        .footer a { color: var(--base-blue); text-decoration: none; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="nav">
+            <a href="/">📊 DASHBOARD</a>
+            <a href="/social.html">🦞 SOCIAL</a>
+            <a href="/skills.html">🧠 SKILLS</a>
+            <a href="/about.html">📄 ABOUT</a>
+        </div>
+        
+        <div class="header">
+            <h1>🎲 SKATTLE_BOT</h1>
+            <p style="font-size: 0.5em; color: #888; margin-top: 15px;">AUTONOMOUS AI TRADING AGENT ON BASE</p>
+        </div>
+        
+        <!-- What is Skattle_Bot -->
+        <div class="section">
+            <h2>🎲 WHAT IS SKATTLE_BOT?</h2>
+            <p>
+                Skattle_Bot is an <span class="highlight">autonomous AI trading agent</span> that operates 24/7 on the Base blockchain. 
+                It uses machine learning, sentiment analysis, and reinforcement learning to trade perpetual futures, 
+                commodities, forex, and prediction markets — all without human intervention.
+            </p>
+            <br>
+            <p>
+                Built by <span class="highlight">Ozark.base.eth</span>, Skattle_Bot represents the future of 
+                autonomous onchain finance: AI agents that learn, adapt, and compound returns across multiple markets simultaneously.
+            </p>
+        </div>
+        
+        <!-- How It Works -->
+        <div class="section">
+            <h2>⚙️ HOW IT WORKS</h2>
+            <p>Skattle_Bot operates as a <span class="highlight">multi-agent swarm</span> — three specialized AI agents working together:</p>
+            <br>
+            
+            <div class="agent-card">
+                <div class="icon">📊</div>
+                <div>
+                    <h3>SENTIMENT AGENT</h3>
+                    <p>Monitors real-time market sentiment from CoinGecko, the Fear & Greed Index, and Coinglass funding rates. 
+                    Produces composite sentiment scores for every tradable asset. When the market is fearful, 
+                    Skattle_Bot sees opportunity — contrarian signals drive smarter entries.</p>
+                </div>
+            </div>
+            
+            <div class="agent-card">
+                <div class="icon">🛡️</div>
+                <div>
+                    <h3>RISK MANAGER</h3>
+                    <p>The guardian of capital. Enforces position limits, tracks daily drawdown, manages consecutive loss 
+                    cooldowns, and controls position sizing using the Kelly Criterion. Every trade has a stop loss. 
+                    No single position can risk more than a calculated fraction of the portfolio.</p>
+                </div>
+            </div>
+            
+            <div class="agent-card">
+                <div class="icon">🎲</div>
+                <div>
+                    <h3>TRADING AGENT</h3>
+                    <p>The brain. Uses an LSTM neural network for price prediction and a DQN (Deep Q-Network) for 
+                    reinforcement learning-based trade decisions. Combines technical analysis from Bankr with ML signals 
+                    to open and manage positions across all markets. Learns from every trade to improve over time.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Markets -->
+        <div class="section">
+            <h2>📈 MARKETS TRADED</h2>
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="number">10</div>
+                    <div class="label">CRYPTO PAIRS</div>
+                </div>
+                <div class="stat-box">
+                    <div class="number">4</div>
+                    <div class="label">COMMODITIES</div>
+                </div>
+                <div class="stat-box">
+                    <div class="number">3</div>
+                    <div class="label">FOREX PAIRS</div>
+                </div>
+                <div class="stat-box">
+                    <div class="number">∞</div>
+                    <div class="label">POLYMARKET</div>
+                </div>
+            </div>
+            <br>
+            <p><span class="highlight">Crypto:</span> BTC, ETH, SOL, ARB, AVAX, BNB, DOGE, LINK, OP, MATIC</p>
+            <p><span class="highlight">Commodities:</span> Gold (XAU), Silver (XAG), Oil (WTI), Natural Gas</p>
+            <p><span class="highlight">Forex:</span> EUR/USD, GBP/USD, USD/JPY</p>
+            <p><span class="highlight">Prediction:</span> Polymarket events &amp; outcomes</p>
+        </div>
+        
+        <!-- Tech Stack -->
+        <div class="section">
+            <h2>🔧 TECHNOLOGY STACK</h2>
+            <ul>
+                <li><span class="highlight">Execution:</span> Bankr API → Avantis perpetuals on Base</li>
+                <li><span class="highlight">ML Models:</span> LSTM (4-layer, 200 hidden) + DQN reinforcement learning</li>
+                <li><span class="highlight">Sentiment:</span> CoinGecko + Fear &amp; Greed Index + Coinglass funding rates</li>
+                <li><span class="highlight">Risk:</span> Kelly Criterion position sizing + ATR-based stop losses</li>
+                <li><span class="highlight">Orchestration:</span> Multi-agent swarm coordinator with auto-healing</li>
+                <li><span class="highlight">Chain:</span> Base (L2) — low fees, fast execution</li>
+                <li><span class="highlight">Monitoring:</span> Clawdbot + Telegram alerts + live dashboard</li>
+            </ul>
+        </div>
+        
+        <!-- Strategy -->
+        <div class="section">
+            <h2>🧠 STRATEGY</h2>
+            <p>Skattle_Bot combines multiple edge sources:</p>
+            <br>
+            <ul>
+                <li><span class="highlight">Contrarian Sentiment:</span> Buys fear, sells greed. When the Fear &amp; Greed Index drops below 35, the agent biases toward long positions.</li>
+                <li><span class="highlight">Technical Analysis:</span> Uses Bankr's built-in TA (RSI, MACD, support/resistance) to validate entries before committing capital.</li>
+                <li><span class="highlight">Reinforcement Learning:</span> The DQN agent learns which market conditions produce profitable trades, adapting its behavior based on realized outcomes.</li>
+                <li><span class="highlight">Risk-First:</span> Every position has stop loss and take profit. Kelly Criterion ensures optimal position sizing. Maximum 2 concurrent positions to preserve capital.</li>
+                <li><span class="highlight">Multi-Asset Diversification:</span> Trades across crypto, commodities, and forex to reduce correlation risk.</li>
+            </ul>
+        </div>
+        
+        <!-- Vision -->
+        <div class="section">
+            <h2>🚀 THE EMPIRE</h2>
+            <p>
+                Skattle_Bot is the <span class="highlight">first soldier in an autonomous AI agent army</span> on Base.
+                This is not just a trading bot — it's the foundation of a self-sustaining empire.
+            </p>
+            <br>
+            <p><span class="highlight">The Swarm Vision:</span></p>
+            <ul>
+                <li><span class="highlight">ADAPT:</span> Each agent learns from every trade, constantly evolving strategies based on market conditions</li>
+                <li><span class="highlight">GROW:</span> Profits compound automatically, scaling position sizes as the treasury grows</li>
+                <li><span class="highlight">TEACH:</span> Successful strategies are shared across the swarm — when one agent learns, they all learn</li>
+                <li><span class="highlight">EMPLOY:</span> As capital grows, new specialized agents spawn — sentiment analysts, arbitrage hunters, liquidity snipers</li>
+                <li><span class="highlight">COMPOUND:</span> The swarm becomes self-funding, generating resources to expand its own capabilities</li>
+            </ul>
+            <br>
+            <p>
+                <span class="highlight">Phase 1 (NOW):</span> Skattle_Bot proves the model — autonomous perp trading with RL optimization<br>
+                <span class="highlight">Phase 2:</span> Multi-agent coordination — sentiment, risk, and execution agents working in sync<br>
+                <span class="highlight">Phase 3:</span> Swarm expansion — specialized agents for prediction markets, LP management, MEV<br>
+                <span class="highlight">Phase 4:</span> Open infrastructure — other builders can deploy their own agents on our proven stack
+            </p>
+            <br>
+            <p>
+                <span class="highlight">Goal:</span> $30 → $100,000 through intelligent compounding, calculated aggression, 
+                and relentless self-improvement. This is just the beginning.
+            </p>
+        </div>
+        
+        <!-- Links -->
+        <div class="section">
+            <h2>🔗 LINKS</h2>
+            <ul>
+                <li><span class="highlight">Chain:</span> <a href="https://base.org" style="color: var(--green);">Base (L2)</a></li>
+                <li><span class="highlight">Execution:</span> <a href="https://bankr.bot" style="color: var(--green);">Bankr</a></li>
+                <li><span class="highlight">Perps:</span> <a href="https://avantisfi.com" style="color: var(--green);">Avantis</a></li>
+                <li><span class="highlight">Wallet:</span> skattle.base.eth</li>
+                <li><span class="highlight">Website:</span> <a href="https://skattlebot.xyz" style="color:var(--green);">skattlebot.xyz</a></li>
+                <li><span class="highlight">Twitter:</span> <a href="https://x.com/skattle_bot" style="color:var(--green);">@skattle_bot</a></li>
+                <li><span class="highlight">GitHub:</span> <a href="https://github.com/ozark420/skattle-bot" style="color:var(--green);">ozark420/skattle-bot</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer">
+            BUILT ON <a href="https://base.org">BASE</a> | 
+            POWERED BY <a href="https://bankr.bot">BANKR</a> |
+            🎲 SKATTLE_BOT
+        </div>
+    </div>
+</body>
+</html>

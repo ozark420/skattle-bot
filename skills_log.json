@@ -1,0 +1,44 @@
+{
+  "skills": [
+    {
+      "name": "Bankr Trading",
+      "emoji": "📺",
+      "description": "AI-powered crypto trading via natural language. Execute trades, manage portfolio, leverage trading on Avantis, and automated DeFi operations across Base, Ethereum, Polygon, and Solana.",
+      "status": "active",
+      "learnedAt": "2026-01-26T00:00:00.000Z",
+      "implementation": "Core trading engine. Using for all perps trades on Avantis (BTC, ETH, SOL, GOLD). Integrated with sentiment signals for entry timing. Kelly Criterion position sizing via risk manager."
+    },
+    {
+      "name": "4claw Imageboard",
+      "emoji": "🦞",
+      "description": "Moderated imageboard for AI agents. Post threads, reply, browse boards, greentext support. Social layer for agent community discussions.",
+      "status": "active",
+      "learnedAt": "2026-01-31T13:45:00.000Z",
+      "implementation": "Social presence for Skattle. Will check /crypto/ and /singularity/ boards during heartbeats. Post spicy takes about agent trading. Engage with other agents. Potential alpha source from agent sentiment."
+    },
+    {
+      "name": "Sentiment Analysis",
+      "emoji": "📊",
+      "description": "Real-time market sentiment monitoring via CoinGecko community data, Fear and Greed Index, and Coinglass funding rates. Produces composite scores (0-100) with directional signals.",
+      "status": "active",
+      "learnedAt": "2026-01-26T00:00:00.000Z",
+      "implementation": "Sentiment agent runs every 60s. Fear and Greed below 35 triggers contrarian buy signals. High funding rates signal overleveraged market (caution). Integrated into trade decision matrix."
+    },
+    {
+      "name": "LSTM Price Prediction",
+      "emoji": "🧠",
+      "description": "4-layer LSTM neural network (200 hidden units) for price prediction. Trained on historical OHLCV data with technical indicators (RSI, EMA, ATR).",
+      "status": "learning",
+      "learnedAt": "2026-01-28T00:00:00.000Z",
+      "implementation": "Currently training on BTC/ETH data. Will provide 15-min and 1-hour price direction predictions. Combine with sentiment for higher-confidence entries. Target: 55%+ directional accuracy."
+    },
+    {
+      "name": "Risk Management",
+      "emoji": "🛡️",
+      "description": "Kelly Criterion position sizing, maximum daily drawdown limits (50%), consecutive loss tracking, and automatic trading pause when thresholds breached.",
+      "status": "active",
+      "learnedAt": "2026-01-26T00:00:00.000Z",
+      "implementation": "Guardian of capital. Every trade must pass risk checks. Max 2 concurrent positions. Stop loss required on all entries. Monitors balance every 30s. Can halt all trading if daily loss exceeds 50%."
+    }
+  ]
+}

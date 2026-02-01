@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skattle_Bot Dashboard</title>
+    <link rel="icon" type="image/jpeg" href="https://i.imgur.com/xNEKMQ1.jpeg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --base-blue: #0052FF;
+            --base-dark: #0039b3;
+            --pixel-black: #0a0a0a;
+            --pixel-dark: #1a1a2e;
+            --pixel-white: #f0f0f0;
+            --green: #00ff88;
+            --red: #ff4444;
+            --yellow: #ffcc00;
+        }
+        
+        body {
+            font-family: 'Press Start 2P', monospace;
+            background: var(--pixel-black);
+            color: var(--pixel-white);
+            min-height: 100vh;
+            padding: 15px;
+        }
+        
+        .header {
+            text-align: center;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 4px solid var(--base-blue);
+            box-shadow: 6px 6px 0 var(--base-dark);
+            background: linear-gradient(180deg, var(--pixel-dark) 0%, var(--pixel-black) 100%);
+        }
+        
+        .header h1 {
+            font-size: 1.5em;
+            color: var(--base-blue);
+            text-shadow: 3px 3px 0 var(--base-dark);
+        }
+        
+        .header .sub { font-size: 0.5em; color: #888; margin-top: 10px; }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .card {
+            background: var(--pixel-dark);
+            border: 3px solid var(--base-blue);
+            padding: 15px;
+            box-shadow: 4px 4px 0 var(--base-dark);
+        }
+        
+        .card h2 {
+            font-size: 0.7em;
+            color: var(--base-blue);
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 2px dashed var(--base-blue);
+        }
+        
+        .stat {
+            display: flex;
+            justify-content: space-between;
+            margin: 8px 0;
+            font-size: 0.55em;
+        }
+        
+        .stat-label { color: #888; }
+        .stat-value { color: var(--pixel-white); }
+        .positive { color: var(--green) !important; }
+        .negative { color: var(--red) !important; }
+        .warning { color: var(--yellow) !important; }
+        
+        .big-number {
+            font-size: 1.2em;
+            text-align: center;
+            padding: 15px;
+            margin: 10px 0;
+        }
+        
+        /* Status badges */
+        .badge {
+            display: inline-block;
+            padding: 4px 8px;
+            font-size: 0.5em;
+            border: 2px solid;
+        }
+        .badge-live { border-color: var(--green); color: var(--green); }
+        .badge-paused { border-color: var(--yellow); color: var(--yellow); }
+        .badge-offline { border-color: var(--red); color: var(--red); }
+        
+        /* Positions Table */
+        .full-width { grid-column: 1 / -1; }
+        
+        .table-wrap { overflow-x: auto; }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.5em;
+        }
+        
+        th, td {
+            padding: 8px 6px;
+            text-align: left;
+            border-bottom: 1px solid var(--base-blue);
+        }
+        
+        th {
+            color: var(--base-blue);
+            background: var(--pixel-black);
+            position: sticky;
+            top: 0;
+        }
+        
+        tr:hover { background: rgba(0, 82, 255, 0.1); }
+        
+        .long { color: var(--green); }
+        .short { color: var(--red); }
+        
+        /* Progress bar */
+        .progress {
+            height: 16px;
+            background: var(--pixel-black);
+            border: 2px solid var(--base-blue);
+            margin: 10px 0;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--base-blue), var(--green));
+            transition: width 0.5s;
+        }
+        
+        /* Agent grid */
+        .agent-row {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .agent {
+            flex: 1;
+            min-width: 80px;
+            text-align: center;
+            padding: 10px;
+            background: var(--pixel-black);
+            border: 2px solid var(--base-blue);
+            font-size: 0.5em;
+        }
+        
+        .agent-icon { font-size: 1.8em; margin-bottom: 5px; }
+        .agent.online .agent-icon { animation: pulse 2s infinite; }
+        .agent.offline { opacity: 0.5; border-color: var(--red); }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+        
+        /* Log */
+        .log {
+            max-height: 150px;
+            overflow-y: auto;
+            font-size: 0.45em;
+            background: var(--pixel-black);
+            border: 2px solid var(--base-blue);
+            padding: 8px;
+        }
+        
+        .log-entry { padding: 4px 0; border-bottom: 1px solid #222; }
+        .log-time { color: var(--base-blue); }
+        
+        .footer {
+            text-align: center;
+            padding: 15px;
+            font-size: 0.45em;
+            color: #666;
+        }
+        
+        .footer a { color: var(--base-blue); text-decoration: none; }
+    </style>
+</head>
+<body>
+    <style>
+        .top-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 15px; padding: 0 10px; }
+        .top-nav a { color: var(--base-blue); text-decoration: none; padding: 10px 16px; border: 2px solid var(--base-blue); font-size: 0.55em; white-space: nowrap; }
+        .top-nav a:hover { background: var(--base-blue); color: var(--pixel-black); }
+        @media (max-width: 480px) {
+            .top-nav { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+            .top-nav a { text-align: center; padding: 12px 8px; font-size: 0.5em; }
+        }
+    </style>
+    <div class="top-nav">
+        <a href="/">📊 DASHBOARD</a>
+        <a href="/social.html">🦞 SOCIAL</a>
+        <a href="/skills.html">🧠 SKILLS</a>
+        <a href="/about.html">📄 ABOUT</a>
+    </div>
+    
+    <style>
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(-2deg); }
+            50% { transform: translateY(-8px) rotate(2deg); }
+        }
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 10px var(--base-blue), 0 0 20px var(--base-blue); }
+            50% { box-shadow: 0 0 20px var(--base-blue), 0 0 40px var(--green); }
+        }
+        .skattle-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 3px solid var(--base-blue);
+            animation: float 3s ease-in-out infinite, glow 2s ease-in-out infinite;
+            margin-bottom: 10px;
+        }
+    </style>
+    
+    <div class="header">
+        <img src="https://i.imgur.com/xNEKMQ1.jpeg" alt="Skattle_Bot" class="skattle-avatar">
+        <h1>🎲 SKATTLE_BOT</h1>
+        <div class="sub">AUTONOMOUS AI TRADING AGENT ON BASE</div>
+        <div style="margin-top:10px;">
+            <a href="https://x.com/skattle_bot" target="_blank" style="color:var(--base-blue); text-decoration:none; font-size:0.5em; border:2px solid var(--base-blue); padding:5px 12px;">𝕏 @SKATTLE_BOT</a>
+            <a href="https://github.com/ozark420/skattle-bot" target="_blank" style="color:var(--base-blue); text-decoration:none; font-size:0.5em; border:2px solid var(--base-blue); padding:5px 12px; margin-left:8px;">⌨ GITHUB</a>
+            <a href="https://basescan.org/token/0x1d8694471aeEA992021AE9fAf53D5380063d5b07" target="_blank" style="color:var(--green); text-decoration:none; font-size:0.5em; border:2px solid var(--green); padding:5px 12px; margin-left:8px;">💎 $SKATTLE</a>
+        </div>
+        <div style="margin-top:8px; font-size:0.4em; color:#888;">
+            CA: <span style="color:var(--green); font-family:monospace;">0x1d8694471aeEA992021AE9fAf53D5380063d5b07</span>
+        </div>
+    </div>
+    
+    <!-- Agent Modal -->
+    <div id="agent-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:999; padding:20px;">
+        <div style="max-width:500px; margin:80px auto; background:var(--pixel-dark); border:4px solid var(--base-blue); box-shadow:8px 8px 0 var(--base-dark); padding:25px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
+                <h2 id="modal-title" style="font-size:0.8em; color:var(--base-blue);"></h2>
+                <span onclick="closeModal()" style="cursor:pointer; font-size:1.2em; color:var(--red);">✕</span>
+            </div>
+            <div id="modal-status" style="font-size:0.5em; margin-bottom:10px;"></div>
+            <p id="modal-body" style="font-size:0.5em; line-height:2.2; color:#ccc;"></p>
+        </div>
+    </div>
+    
+    <div class="grid">
+        <!-- Balance -->
+        <div class="card">
+            <h2>💰 TOTAL VALUE</h2>
+            <div class="big-number" id="balance">$0.00</div>
+            <div style="display:flex; justify-content:space-between; font-size:0.5em; margin:10px 0; padding:8px; background:var(--pixel-black); border:1px solid var(--base-blue);">
+                <div>💵 USDC: <span id="usdc-balance" style="color:var(--green);">$--</span></div>
+                <div>📊 Positions: <span id="position-value" style="color:var(--base-blue);">$--</span></div>
+            </div>
+            <div class="stat">
+                <span class="stat-label">STARTING</span>
+                <span class="stat-value">$30.00</span>
+            </div>
+            <div class="stat">
+                <span class="stat-label">TOTAL P&L</span>
+                <span class="stat-value" id="total-pnl">$0.00</span>
+            </div>
+            <div class="progress">
+                <div class="progress-bar" id="goal-bar" style="width: 0%"></div>
+            </div>
+            <div class="stat">
+                <span class="stat-label">GOAL: $100K</span>
+                <span class="stat-value" id="goal-pct">0%</span>
+            </div>
+        </div>
+        
+        <!-- Performance -->
+        <div class="card">
+            <h2>📈 PERFORMANCE</h2>
+            <div class="stat">
+                <span class="stat-label">TODAY P&L</span>
+                <span class="stat-value" id="daily-pnl">$0.00</span>
+            </div>
+            <div class="stat">
+                <span class="stat-label">TRADES TODAY</span>
+                <span class="stat-value" id="trades-today">0</span>
+            </div>
+            <div class="stat">
+                <span class="stat-label">WIN RATE</span>
+                <span class="stat-value" id="win-rate">--%</span>
+            </div>
+            <div class="stat">
+                <span class="stat-label">OPEN POSITIONS</span>
+                <span class="stat-value" id="open-count">0</span>
+            </div>
+            <div class="stat">
+                <span class="stat-label">STATUS</span>
+                <span id="status-badge" class="badge badge-live">● LIVE</span>
+            </div>
+        </div>
+        
+        <!-- Agents -->
+        <div class="card">
+            <h2>🤖 AGENTS</h2>
+            <div class="agent-row">
+                <div class="agent online" id="agent-sentiment" onclick="showAgent('sentiment')" style="cursor:pointer;">
+                    <div class="agent-icon">📊</div>
+                    <div>SENTIMENT</div>
+                    <div style="font-size:0.7em; color:var(--green); margin-top:4px;" id="sentiment-label">● ONLINE</div>
+                </div>
+                <div class="agent online" id="agent-risk" onclick="showAgent('risk')" style="cursor:pointer;">
+                    <div class="agent-icon">🛡️</div>
+                    <div>RISK</div>
+                    <div style="font-size:0.7em; color:var(--green); margin-top:4px;" id="risk-label">● ONLINE</div>
+                </div>
+                <div class="agent online" id="agent-trader" onclick="showAgent('trader')" style="cursor:pointer;">
+                    <div class="agent-icon">🎲</div>
+                    <div>TRADER</div>
+                    <div style="font-size:0.7em; color:var(--green); margin-top:4px;" id="trader-label">● ONLINE</div>
+                </div>
+            </div>
+            <div class="stat" style="margin-top: 10px;">
+                <span class="stat-label">UPTIME</span>
+                <span class="stat-value" id="uptime">0:00:00</span>
+            </div>
+            <div class="stat">
+                <span class="stat-label">FEAR & GREED</span>
+                <span class="stat-value" id="fear-greed">-- --</span>
+            </div>
+            <div class="progress" style="height:12px; margin-top:8px;">
+                <div id="fg-gauge" style="height:100%; width:50%; background:linear-gradient(90deg, #ff4444, #ffcc00, #00ff88); transition:width 0.5s;"></div>
+            </div>
+            <div style="display:flex; justify-content:space-between; font-size:0.4em; color:#666; margin-top:4px;">
+                <span>FEAR</span><span>GREED</span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Positions Table -->
+    <div class="card full-width">
+        <h2>📊 TRADE HISTORY</h2>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>TIME</th>
+                        <th>PAIR</th>
+                        <th>SIDE</th>
+                        <th>SIZE</th>
+                        <th>LEV</th>
+                        <th>ENTRY</th>
+                        <th>SL</th>
+                        <th>TP</th>
+                        <th>STATUS</th>
+                    </tr>
+                </thead>
+                <tbody id="trades-table">
+                    <tr><td colspan="10" style="text-align:center; padding: 20px;">Loading trades...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <div class="footer">
+        BUILT ON <a href="https://base.org">BASE</a> | 
+        POWERED BY <a href="https://bankr.bot">BANKR</a> |
+        🎲 SKATTLE_BOT
+    </div>
+    
+    <script>
+        const API = '/api';
+        let lastLogCount = 0;
+        
+        const agentInfo = {
+            sentiment: {
+                title: '📊 SENTIMENT AGENT',
+                desc: 'Monitors real-time market sentiment across all traded assets. Sources include CoinGecko community sentiment, the Crypto Fear & Greed Index, and Coinglass funding rates. Produces composite scores (0-100) with directional signals (bullish/neutral/bearish). When Fear & Greed drops below 35 (Fear zone), it triggers contrarian buy signals for the Trading Agent. Updates every 60 seconds.'
+            },
+            risk: {
+                title: '🛡️ RISK MANAGER',
+                desc: 'The guardian of capital. Enforces maximum daily drawdown limits (50%), tracks consecutive losses, controls position sizing, and can pause all trading when risk thresholds are breached. Uses Kelly Criterion for optimal bet sizing. Ensures every position has stop loss protection. Maximum 2 concurrent positions. Monitors balance every 30 seconds.'
+            },
+            trader: {
+                title: '🎲 TRADING AGENT',
+                desc: 'The brain of Skattle_Bot. Uses LSTM neural network (4-layer, 200 hidden units) for price prediction and DQN reinforcement learning for trade decisions. Analyzes technical indicators (RSI, EMA, ATR), combines with sentiment signals, and executes trades via Bankr API on Avantis perpetuals. Trades 10 crypto markets on Base. Learns from every trade outcome to improve over time.'
+            }
+        };
+        
+        function showAgent(name) {
+            const info = agentInfo[name];
+            document.getElementById('modal-title').textContent = info.title;
+            document.getElementById('modal-body').textContent = info.desc;
+            const el = document.getElementById(`agent-${name}`);
+            const isOnline = el.classList.contains('online');
+            document.getElementById('modal-status').innerHTML = isOnline 
+                ? '<span style="color:var(--green);">● ONLINE</span>' 
+                : '<span style="color:var(--red);">○ OFFLINE</span>';
+            document.getElementById('agent-modal').style.display = 'block';
+        }
+        
+        function closeModal() {
+            document.getElementById('agent-modal').style.display = 'none';
+        }
+        
+        document.getElementById('agent-modal').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+        
+        function formatTime(seconds) {
+            const h = Math.floor(seconds / 3600);
+            const m = Math.floor((seconds % 3600) / 60);
+            const s = Math.floor(seconds % 60);
+            return `${h}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+        }
+        
+        function formatPnl(value) {
+            if (!value || value === 0) return '-';
+            const sign = value >= 0 ? '+' : '';
+            return `${sign}$${value.toFixed(2)}`;
+        }
+        
+        async function update() {
+            try {
+                const res = await fetch(`${API}/status`);
+                const d = await res.json();
+                
+                // Balance & Risk State
+                if (d.live_positions) {
+                    // Get live data from Bankr
+                    const usdcBal = d.live_positions.usdc_balance || d.risk_state?.balance || 0;
+                    const positionCollateral = d.live_positions.total_collateral || 0;
+                    const positionPnl = d.live_positions.total_pnl || 0;
+                    
+                    const totalValue = usdcBal + positionCollateral + positionPnl;
+                    
+                    document.getElementById('balance').textContent = `$${totalValue.toFixed(2)}`;
+                    document.getElementById('balance').className = `big-number ${totalValue >= 30 ? 'positive' : 'negative'}`;
+                    document.getElementById('usdc-balance').textContent = `$${usdcBal.toFixed(2)}`;
+                    const pnlColor = positionPnl >= 0 ? 'var(--green)' : 'var(--red)';
+                    document.getElementById('position-value').innerHTML = `$${positionCollateral.toFixed(2)} <span style="color:${pnlColor}">(${positionPnl >= 0 ? '+' : ''}${positionPnl.toFixed(2)})</span>`;
+                    
+                    const bal = totalValue;
+                    
+                    const pnl = bal - 30;
+                    const pnlEl = document.getElementById('total-pnl');
+                    pnlEl.textContent = formatPnl(pnl);
+                    pnlEl.className = `stat-value ${pnl >= 0 ? 'positive' : 'negative'}`;
+                    
+                    // Use live position PnL for today's P&L
+                    const dailyPnl = positionPnl;
+                    const dailyEl = document.getElementById('daily-pnl');
+                    dailyEl.textContent = formatPnl(dailyPnl);
+                    dailyEl.className = `stat-value ${dailyPnl >= 0 ? 'positive' : 'negative'}`;
+                    
+                    // Count trades from today
+                    const today = new Date().toISOString().split('T')[0];
+                    const tradesToday = d.trades ? d.trades.filter(t => t.time && t.time.startsWith(today)).length : 0;
+                    document.getElementById('trades-today').textContent = tradesToday;
+                    
+                    // Goal progress
+                    const pct = (bal / 100000) * 100;
+                    document.getElementById('goal-bar').style.width = `${Math.min(pct, 100)}%`;
+                    document.getElementById('goal-pct').textContent = `${pct.toFixed(3)}%`;
+                    
+                    // Paused status
+                    const badge = document.getElementById('status-badge');
+                    if (d.risk_state.paused) {
+                        badge.textContent = '⏸ PAUSED';
+                        badge.className = 'badge badge-paused';
+                    } else {
+                        badge.textContent = '● LIVE';
+                        badge.className = 'badge badge-live';
+                    }
+                }
+                
+                // Swarm Status
+                if (d.swarm_status) {
+                    document.getElementById('uptime').textContent = formatTime(d.swarm_status.uptime_seconds || 0);
+                    
+                    ['sentiment', 'risk', 'trader'].forEach(a => {
+                        const el = document.getElementById(`agent-${a}`);
+                        const label = document.getElementById(`${a}-label`);
+                        const running = d.swarm_status.agents?.[a]?.running;
+                        el.className = `agent ${running ? 'online' : 'offline'}`;
+                        el.style.cursor = 'pointer';
+                        if (label) {
+                            label.textContent = running ? '● ONLINE' : '○ OFFLINE';
+                            label.style.color = running ? 'var(--green)' : 'var(--red)';
+                        }
+                    });
+                }
+                
+                // Signals & Fear/Greed Gauge
+                if (d.signals?.signals?.BTC?.components?.fear_greed) {
+                    const fg = d.signals.signals.BTC.components.fear_greed;
+                    const fgEl = document.getElementById('fear-greed');
+                    fgEl.textContent = `${fg.value} ${fg.classification}`;
+                    fgEl.className = `stat-value ${fg.value < 35 ? 'negative' : fg.value > 65 ? 'positive' : 'warning'}`;
+                    document.getElementById('fg-gauge').style.width = `${fg.value}%`;
+                }
+                
+                // Trades Table
+                if (d.trades) {
+                    const tbody = document.getElementById('trades-table');
+                    tbody.innerHTML = '';
+                    
+                    if (d.trades.length === 0) {
+                        tbody.innerHTML = '<tr><td colspan="10" style="text-align:center; padding:20px; color:#666;">No executed trades yet...</td></tr>';
+                    }
+                    
+                    let openCount = 0;
+                    let wins = 0, losses = 0;
+                    
+                    d.trades.forEach(t => {
+                        const row = document.createElement('tr');
+                        const sideClass = t.direction === 'long' ? 'long' : t.direction === 'short' ? 'short' : '';
+                        openCount++;
+                        
+                        const txLink = t.tx_hash 
+                            ? `<a href="https://basescan.org/tx/${t.tx_hash}" target="_blank" style="color:var(--base-blue);">View</a>` 
+                            : '-';
+                        
+                        const fmtPrice = (p) => p ? (p > 1000 ? p.toFixed(2) : p.toFixed(4)) : '-';
+                        
+                        row.innerHTML = `
+                            <td>${t.time || '-'}</td>
+                            <td><strong>${t.pair}</strong></td>
+                            <td class="${sideClass}">${(t.direction || '-').toUpperCase()}</td>
+                            <td>$${(t.size || 0).toFixed(2)}</td>
+                            <td>${t.leverage || '-'}x</td>
+                            <td>${fmtPrice(t.entry_price)}</td>
+                            <td>${fmtPrice(t.stop_loss)}</td>
+                            <td>${fmtPrice(t.take_profit)}</td>
+                            <td><span class="positive">● LIVE</span></td>
+                        `;
+                        tbody.appendChild(row);
+                    });
+                    
+                    // Open positions from live Bankr data
+                    const livePositions = d.live_positions?.positions?.length || 0;
+                    document.getElementById('open-count').textContent = livePositions;
+                    
+                    // Win rate requires closed trades - show -- until we have that data
+                    const total = wins + losses;
+                    const winRate = total > 0 ? ((wins / total) * 100).toFixed(0) : '--';
+                    document.getElementById('win-rate').textContent = `${winRate}%`;
+                }
+                
+                // Fetch logs
+                const logRes = await fetch(`${API}/logs`);
+                const logData = await logRes.json();
+                if (logData.logs && logData.logs.length !== lastLogCount) {
+                    lastLogCount = logData.logs.length;
+                    const logEl = document.getElementById('log');
+                    logEl.innerHTML = logData.logs.slice(-30).reverse().map(l => 
+                        `<div class="log-entry"><span class="log-time">[${l.time}]</span> ${l.message}</div>`
+                    ).join('');
+                }
+                
+            } catch (err) {
+                console.error('Update failed:', err);
+            }
+        }
+        
+        // Start
+        update();
+        setInterval(update, 3000);
+    </script>
+</body>
+</html>

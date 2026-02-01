@@ -237,12 +237,17 @@
             .header-links { display:flex; flex-wrap:wrap; justify-content:center; gap:8px; margin-top:10px; }
             .header-links a { color:var(--base-blue); text-decoration:none; font-size:0.5em; border:2px solid var(--base-blue); padding:8px 12px; white-space:nowrap; }
             .header-links a.token { color:var(--green); border-color:var(--green); }
-            .ca-display { margin-top:15px; display:flex; flex-direction:column; align-items:center; gap:8px; padding:0 10px; }
-            .ca-display code { font-size:0.45em; color:var(--green); background:rgba(0,255,136,0.1); padding:10px 12px; border-radius:4px; font-family:'Courier New',monospace; cursor:pointer; word-break:break-all; text-align:center; max-width:100%; }
+            .ca-box { margin-top:20px; background:linear-gradient(135deg, rgba(0,255,136,0.15) 0%, rgba(0,82,255,0.1) 100%); border:3px solid var(--green); padding:15px 20px; text-align:center; box-shadow:4px 4px 0 rgba(0,255,136,0.3); }
+            .ca-label { font-size:0.8em; color:var(--green); margin-bottom:10px; text-shadow:0 0 10px rgba(0,255,136,0.5); }
+            .ca-address { font-size:0.7em; color:var(--pixel-white); font-family:'Courier New',monospace; letter-spacing:1px; word-break:break-all; cursor:pointer; padding:10px; background:var(--pixel-black); border:2px solid var(--base-blue); transition:all 0.2s; }
+            .ca-address:hover { background:var(--base-blue); color:var(--pixel-black); }
+            .ca-hint { font-size:0.4em; color:var(--green); margin-top:8px; }
             @media (max-width: 480px) {
                 .header-links { gap:6px; }
                 .header-links a { font-size:0.45em; padding:6px 10px; }
-                .ca-display code { font-size:0.38em; padding:8px 10px; }
+                .ca-box { padding:12px 15px; margin:15px 10px 0 10px; }
+                .ca-label { font-size:0.65em; }
+                .ca-address { font-size:0.5em; padding:8px; letter-spacing:0; }
             }
         </style>
         <div class="header-links">
@@ -250,9 +255,10 @@
             <a href="https://github.com/ozark420/skattle-bot" target="_blank">⌨ GITHUB</a>
             <a href="https://www.clanker.world/clanker/0x1d8694471aeEA992021AE9fAf53D5380063d5b07" target="_blank" class="token">💎 $SKATTLE</a>
         </div>
-        <div class="ca-display">
-            <code onclick="navigator.clipboard.writeText('0x1d8694471aeEA992021AE9fAf53D5380063d5b07');this.style.background='rgba(0,255,136,0.3)';">0x1d8694471aeEA992021AE9fAf53D5380063d5b07</code>
-            <span style="font-size:0.35em; color:#666;">tap to copy</span>
+        <div class="ca-box">
+            <div class="ca-label">💎 $SKATTLE CONTRACT ADDRESS 💎</div>
+            <div class="ca-address" onclick="navigator.clipboard.writeText('0x1d8694471aeEA992021AE9fAf53D5380063d5b07');this.innerText='✓ COPIED!';">0x1d8694471aeEA992021AE9fAf53D5380063d5b07</div>
+            <div class="ca-hint">👆 TAP TO COPY</div>
         </div>
     </div>
     
